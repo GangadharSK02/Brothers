@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ lesson.title }} - Lesson Content{% endblock %}
+
+{% block content %}
+  <div class="lesson-content">
+    <h1>{{ lesson.title }}</h1>
+    <p>{{ lesson.description }}</p>
+    <hr>
+    <h3>Lesson Contents</h3>
+    {% for content in contents %}
+      <div class="content-piece mb-4">
+         <h4>{{ content.title }}</h4>
+         {% if content.text %}
+           <p>{{ content.text }}</p>
+         {% elif content.video_url %}
+           <div class="embed-responsive embed-responsive-16by9">
+             <iframe class="embed-responsive-item" src="{{ content.video_url }}" allowfullscreen></iframe>
+           </div>
+         {% elif content.file %}
+           <p>File: <a href="{{ content.file.url }}" target="_blank">Download</a></p>
+         {% elif content.interactive_data %}
+           <div class="interactive-content">
+              <pre>{{ content.interactive_data|json_script:"interactive-data" }}</pre>
+              <p>{{ content.instructions }}</p>
+           </div>
+         {% endif %}
+      </div>
+    {% empty %}
+      <p>No content available for this lesson.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

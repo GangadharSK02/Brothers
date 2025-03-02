@@ -1,0 +1,17 @@
+/* Basic custom styles for EduPlatform */
+body {
+    padding-top: 70px;
+    background-color: #f8f9fa;
+  }
+  
+  .footer {
+    margin-top: 50px;
+    font-size: 0.9rem;
+  }
+  
+  .course-detail h1, .lesson-content h1, .profile-detail h2 {
+    margin-bottom: 20px;
+  }
+  .card-text {
+    min-height: 80px;
+  }
